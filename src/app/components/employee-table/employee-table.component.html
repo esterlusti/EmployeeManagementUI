@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>{{ title }}</h2>
+
+  <div class="table-actions">
+    <button class="add-button" (click)="showAddForm()">Add New Employee</button>
+  </div>
+
+  <div class="table-container" *ngIf="!showForm">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Role</th>
+          <th>Manager</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.idNumber }}</td>
+          <td>{{ employee.roleId }}</td>
+          <td>{{ employee.managerName || 'none' }}</td>
+          <td class="actions-column">
+            <button class="edit-button" (click)="editEmployee(employee)">Edit</button>
+            <button class="delete-button" (click)="deleteEmployee(employee.idNumber)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-container" *ngIf="showForm">
+    <app-employee-form [employee]="selectedEmployee" (submitForm)="handleFormSubmit($event)"
+      (cancelEdit)="handleFormCancel()">
+    </app-employee-form>
+  </div>
+</div>

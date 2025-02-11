@@ -1,0 +1,33 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name" required>
+    <div class="error-message" *ngIf="nameControl?.invalid && nameControl?.touched">
+      Name is required
+    </div>
+  </div>
+
+  <div>
+    <label for="id">ID:</label>
+    <input id="id" type="text" formControlName="id" required>
+    <div class="error-message" *ngIf="idControl?.invalid && idControl?.touched">
+      ID is required
+    </div>
+  </div>
+
+  <div>
+    <label for="role">Role:</label>
+    <input id="role" type="text" formControlName="role" required>
+    <div class="error-message" *ngIf="roleControl?.invalid && roleControl?.touched">
+      Role is required
+    </div>
+  </div>
+
+  <div>
+    <label for="managerId">Manager ID:</label>
+    <input id="managerId" type="text" formControlName="managerId">
+  </div>
+
+  <button type="submit" [disabled]="!employeeForm.valid">Save</button>
+  <button type="button" (click)="cancelEdit.emit()">Cancel</button>
+</form>
